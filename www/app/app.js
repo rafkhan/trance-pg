@@ -22,12 +22,13 @@ angular.module('trance', [])
     ];
 
     $scope.current = $scope.tracks[1];
+    $scope.palette = ["red","green"]
 
 
     $scope.setTrack = function(track) {
       $scope.current = track;
       var img = document.getElementById('current-art');
-      var palette = colorThief.getPalette(img, 4);
+      var palette = colorThief.getPalette(img, 2);
 
       $scope.palette = _.map(palette, function(color) {
         return ['rgb(', color[0], ',', color[1], ',', color[2], ')'].join('');

@@ -15,10 +15,10 @@
   <body>
 
     <div class="container" ng-controller="MainCtrl">
-      <div class="current-track-container">
+      <div class="current-track-container" ng-style="{'background-color': palette[0]}">
         <img id="current-art" ng-src="{{current.art}}" />
 
-        <div class="current-info">
+        <div class="current-info" ng-style="{color: palette[1]}">
           {{current.name}}<br />
           {{current.artist}}<br />
           {{current.album}}<br />
@@ -31,12 +31,19 @@
             {{track | json}}
           </li>
       </div>
+
+      <div class="colors">
+        <div ng-repeat="color in palette track by $index" ng-style="{'background-color' : color}" style="height: 50px; width: 100%">
+          {{color}}
+        </div>
+      </div>
     </div>
 
     <!--<script type="text/javascript" src="cordova.js"></script>-->
     <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/color-thief/src/color-thief.js"></script>
+    <script type="text/javascript" src="bower_components/lodash/dist/lodash.min.js"></script>
 
+    <script type="text/javascript" src="bower_components/color-thief/src/color-thief.js"></script>
     <script type="text/javascript" src="app/app.js"></script>
 
   </body>
