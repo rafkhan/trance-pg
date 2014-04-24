@@ -1,0 +1,44 @@
+@import "compass/reset";
+@import "compass/css3";
+
+$cont-pad: 10px; //put this on everything pretty much
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+* {
+  @include box-sizing(border-box);
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.current-track-container {
+  background-color: #0074D9; // clrs.cc blue
+  padding: $cont-pad;
+  width: 100%;
+  overflow: auto;
+  @include clearfix;
+
+  img#current-art {
+    display: inline-block;
+    float: left;
+    width: 40%;
+
+    max-width: 150px;
+  }
+
+  .current-info {
+    display: inline-block;
+    float: left;
+    width: 60%;
+    padding-left: $cont-pad;
+  }
+
+}

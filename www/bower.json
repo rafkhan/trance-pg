@@ -5,6 +5,7 @@
     "angular": "~1.2.1",
     "font-awesome": "~4.0.3",
     "angular-animate": "~1.2.0",
-    "color-thief": "*"
+    "color-thief": "*",
+    "lodash": "*"
   }
 }

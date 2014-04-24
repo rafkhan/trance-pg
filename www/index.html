@@ -6,12 +6,31 @@
     <meta name="format-detection" content="telephone=no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
+
+    <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/grids-min.css" />
+
     <title>Hello World</title>
   </head>
   <body>
 
     <div class="container" ng-controller="MainCtrl">
-      {{msg}}
+      <div class="current-track-container">
+        <img id="current-art" ng-src="{{current.art}}" />
+
+        <div class="current-info">
+          {{current.name}}<br />
+          {{current.artist}}<br />
+          {{current.album}}<br />
+        </div>
+      </div>
+
+      <div class="tracklist-container">
+        <ul>
+          <li ng-repeat="track in tracks track by $index" ng-click="setTrack(track)">
+            {{track | json}}
+          </li>
+      </div>
     </div>
 
     <!--<script type="text/javascript" src="cordova.js"></script>-->
