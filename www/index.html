@@ -7,36 +7,56 @@
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, target-densitydpi=device-dpi" />
 
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css" />
+
     <link rel="stylesheet" type="text/css" href="assets/css/index.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/grids-min.css" />
 
     <title>Hello World</title>
   </head>
-  <body>
+  <body ng-controller="MainCtrl"
+        ng-style="{ 'background-color' : palette[0],
+                    'color'            : palette[1] }">
 
-    <div class="container" ng-controller="MainCtrl">
-      <div class="current-track-container" ng-style="{'background-color': palette[0]}">
+
+    <div class="container">
+
+      <div class="current-track-container">
         <img id="current-art" ng-src="{{current.art}}" />
 
-        <div class="current-info" ng-style="{color: palette[1]}">
-          {{current.name}}<br />
-          {{current.artist}}<br />
-          {{current.album}}<br />
+        <div class="current-info">
+          <div class="name">{{current.name}}</div>
+          <div class="artist">{{current.artist}}</div>
+          <div class="album">{{current.album}}</div>
+
+          <div class="controls">
+            <i class="fa fa-step-backward"></i>
+            <i class="fa fa-play"></i>
+            <i class="fa fa-step-forward"></i>
+          </div>
+
         </div>
       </div>
 
       <div class="tracklist-container">
         <ul>
-          <li ng-repeat="track in tracks track by $index" ng-click="setTrack(track)">
-            {{track | json}}
+          <li ng-repeat="track in tracks track by $index"
+              ng-click="setTrack(track)"
+              ng-style="{'border-color': palette[2]}">
+
+
+            <img ng-src="{{track.art}}" />
+
+            <div class="track-info">
+              <div class="name">{{track.name}}</div>
+              <div class="artist">{{track.artist}}</div>
+            </div>
           </li>
       </div>
 
-      <div class="colors">
-        <div ng-repeat="color in palette track by $index" ng-style="{'background-color' : color}" style="height: 50px; width: 100%">
-          {{color}}
-        </div>
-      </div>
+
+      <div id="background-art" ng-style="{'background-image' : 'url(\'' + current.art + '\')' }">
+
     </div>
 
     <!--<script type="text/javascript" src="cordova.js"></script>-->

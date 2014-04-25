@@ -11,25 +11,61 @@ $cont-pad: 10px; //put this on everything pretty much
   }
 }
 
+@mixin ellipsis-overflow {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
 * {
   @include box-sizing(border-box);
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  font-family: sans-serif;
+  font-family: 'Helvetica', sans-serif;
+  font-weight: 100;
+  font-size: 16px;
+}
+
+#background-art {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include opacity(0.1);
+  z-index: -1;
+}
+
+.container {
+  height: 100%;
+  position: relative;
 }
 
 .current-track-container {
-  background-color: #0074D9; // clrs.cc blue
   padding: $cont-pad;
   width: 100%;
   overflow: auto;
+  position: relative;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+
   @include clearfix;
 
   img#current-art {
     display: inline-block;
     float: left;
-    width: 40%;
+    width: 30%;
 
     max-width: 150px;
   }
@@ -37,8 +73,74 @@ body {
   .current-info {
     display: inline-block;
     float: left;
-    width: 60%;
+    width: 70%;
+    height: 100%;
     padding-left: $cont-pad;
-  }
+    position: relative;
 
+    .name {
+      font-size: 25px;
+      padding-bottom: 5px;
+      font-weight: 500;
+
+      @include ellipsis-overflow;
+    }
+
+    .artist {
+      font-weight: 500;
+
+      @include ellipsis-overflow;
+    }
+
+    .album {
+      font-size: 14px;
+      font-style: italic;
+
+      padding-top: 5px;
+
+      @include ellipsis-overflow;
+    }
+
+    .controls {
+      margin-top: 15px;
+
+      i {
+        font-size: 20px;
+
+        &:not(:first-child) {
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+}
+
+.tracklist-container {
+  $list-content-height: 55px;
+  $list-padding-height: 5px;
+
+  $list-item-height: ($list-content-height +  ($list-padding-height * 2));
+
+  ul li {
+    &:not(:first-child) { border-top: 1px solid black; }
+    padding: $list-padding-height;
+    height: $list-item-height;
+
+    img {
+      float: left;
+      height: $list-content-height;
+      padding-right: $list-padding-height;
+    }
+
+    .track-info {
+      .name {
+        font-weight: 500;
+        padding-bottom: $list-padding-height;
+      }
+
+      .artist {
+        font-size: 13px;
+      }
+    }
+  }
 }
